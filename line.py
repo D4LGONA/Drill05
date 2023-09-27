@@ -1,5 +1,6 @@
 import turtle
 import random
+import math
 
 
 def stop():
@@ -57,10 +58,12 @@ def draw_line(p1, p2):
     x1, y1 = p1[0], p1[1] # -100, -100
     x2, y2 = p2[0], p2[1] # 300, 150
 
-    for i in range(100, 0, -3): # t는 0에서 1 사이의 값인데, 정수밖에 안돼서 0-100 정방향 100-0 역방향
+    for i in range(0, 100 + 1, 3): # t는 0에서 1 사이의 값인데, 정수밖에 안돼서 0-100 정방향 100-0 역방향
         t = i / 100
         x = (1-t) * x1 + t * x2 # 1-t:t의 비율로 x1, x2를 더한다
         y = (1-t) * y1 + t * y2 # 1-t:t의 비율로 y1, y2를 더한다 선형 조합..?
+        # x = 100 * (1 - t ** 2) / (1 + t ** 2)
+        # y = 100 * 2 * t / (1 + t ** 2)
         draw_point((x, y))
 
     draw_point((x2, y2)) # 마지막 점을 꼭 찍어야 함
@@ -68,8 +71,16 @@ def draw_line(p1, p2):
 
 prepare_turtle_canvas()
 
+# points = [(-300, 200), (400, 350), (300, -300), (-200, -200)]
+points = [(random.randint(-300, 300), random.randint(-300, 300)) for i in range(10)]
 
-draw_line((-100, -100), (300, 150))
-draw_line((-100, -100), (-100, 300)) # 이 경우 0으로 나누기 당해서 에러 남
+for p in points:
+    draw_big_point(p)
+
+for i in range(0, len(points) - 1):
+    draw_line(points[i], points[i + 1])
+draw_line(points[-1], points[0])
+#draw_line((-100, -100), (300, 150))
+# draw_line((-100, -100), (-100, 300)) # 이 경우 0으로 나누기 당해서 에러 남
 
 turtle.done()
