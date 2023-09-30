@@ -9,7 +9,6 @@ TUK_ground = load_image('TUK_GROUND.png')
 character = load_image('animation_sheet.png')
 cursor = load_image('hand_arrow.png')
 
-
 def handle_events():
     global running
     global x, y
@@ -44,7 +43,6 @@ def draw():
         character.clip_draw(frame * 100, 100 * 0, 100, 100, x, y)
     update_canvas()       
     frame = (frame + 1) % 8 
-
 
 running = True
 x, y = TUK_WIDTH // 2, TUK_HEIGHT // 2
