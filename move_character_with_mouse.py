@@ -20,8 +20,6 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
 
-
-
 def move():
     global x, y, h_x, h_y
     x1, y1 = x, y
@@ -35,7 +33,6 @@ def move():
         y = (1-t) * y1 + t * y2 
         draw()
 
-
 def draw():
     global frame, h_x, h_y, x, y
     clear_canvas()
@@ -48,6 +45,7 @@ def draw():
     update_canvas()       
     frame = (frame + 1) % 8 
 
+
 running = True
 x, y = TUK_WIDTH // 2, TUK_HEIGHT // 2
 h_x, h_y = randint(0, 1280), randint(0, 1024)
@@ -57,7 +55,6 @@ hide_cursor()
 while running:
     move()
     h_x, h_y = randint(0, 1280), randint(0, 1024)
-
     handle_events()
 
 close_canvas()
